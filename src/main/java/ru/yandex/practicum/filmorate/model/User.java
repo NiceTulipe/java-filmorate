@@ -7,26 +7,6 @@ import lombok.NonNull;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
-
-//@Data
-//@Builder
-//@NonNull
-//public class User {
-//    @Positive
-//    private Integer id;
-//    @Email(message = "Поле email не соответствует формату userEmail@email.com")
-//    private final String email;
-//    @Pattern(message = "Поле login должно содержать только A-Z и 1-9",
-//            Pattern ("[A-Za-z0-9]"))
-//    private final String login;
-//
-//    @Builder.Default
-//    private String name = "";
-//    @PastOrPresent(message = "Поле birthday не корректно")
-//    private final LocalDate birthday;
-//}
-
-
 @Data
 @NonNull
 @Builder
