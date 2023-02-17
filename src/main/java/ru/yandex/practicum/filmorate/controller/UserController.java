@@ -1,5 +1,6 @@
 package ru.yandex.practicum.filmorate.controller;
 
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exception.InvalidException;
@@ -15,13 +16,15 @@ import java.util.*;
 
 public class UserController {
 
+    Map<Integer, User> users = new HashMap<>();
+    List<String> emails = new ArrayList<>();
+
+
     private int idGenerate = 1;
 
-    private final Map<Integer, User> users = new HashMap<>();
-    private final List<String> emails = new ArrayList<>();
 
     @GetMapping
-    public Collection<User> findAll() {
+    public Collection<User> findAllUsers() {
         return users.values();
     }
 
