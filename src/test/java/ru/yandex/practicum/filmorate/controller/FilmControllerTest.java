@@ -31,7 +31,6 @@ class FilmControllerTest {
         validatorFactory.close();
     }
 
-
     @Test
     void postFilm_errorMustBeZero() {
         Film film = Film.builder()
@@ -98,6 +97,19 @@ class FilmControllerTest {
                 .build();
         Set<ConstraintViolation<Film>> constraintViolations = validator.validate(film);
         assertEquals(1, constraintViolations.size(), "получена ошибка описание отсутствует");
+    }
+
+    @Test
+    void postFilm_mustCatchErrorReleaseDateToEarly() {
+        Film film = Film.builder()
+                .id(1)
+                .name("Покемон фильм первый: Мьюту против Мью")
+                .description("Создан первый искусственный покемон")
+                .releaseDate(LocalDate.of(1700, 12, 22))
+                .duration(90)
+                .build();
+        Set<ConstraintViolation<Film>> constraintViolations = validator.validate(film);
+        assertEquals(1, constraintViolations.size(), "получена ошибка дата релиза слишком ранняя");
     }
 
 }

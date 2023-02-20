@@ -1,6 +1,5 @@
 package ru.yandex.practicum.filmorate.controller;
 
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exception.InvalidException;
@@ -18,10 +17,7 @@ public class UserController {
 
     Map<Integer, User> users = new HashMap<>();
     List<String> emails = new ArrayList<>();
-
-
     private int idGenerate = 1;
-
 
     @GetMapping
     public Collection<User> findAllUsers() {
@@ -44,9 +40,7 @@ public class UserController {
         return user;
     }
 
-
     @PutMapping
-
     public User userUpdate(@Valid @RequestBody User user) {
         if (!users.containsKey(user.getId())) {
             log.warn("Пользователь с таким id '{}' не обнаружен ", user.getId());
@@ -57,7 +51,6 @@ public class UserController {
                     user.getEmail());
             throw new AlreadyExistException("Пользователь с таким email существует");
         }
-
         users.put(user.getId(), user);
         log.info("Получен запрос PUT user, обновлен user id '{}' Email '{}'  ", user.getId(), user.getEmail());
         return user;

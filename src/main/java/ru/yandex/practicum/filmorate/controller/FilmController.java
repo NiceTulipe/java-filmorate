@@ -16,7 +16,7 @@ import java.util.Map;
 @RequestMapping("/films")
 public class FilmController {
 
-    private LocalDate notEarlier = LocalDate.of(1895, 12, 28);
+    private final LocalDate notEarlier = LocalDate.of(1895, 12, 28);
     private int idGenerate = 1;
     private final Map<Integer, Film> films = new HashMap<>();
 
@@ -28,7 +28,6 @@ public class FilmController {
 
     @PostMapping
     public Film create(@Valid @RequestBody Film film) {
-        validator(film);
         film.setId(idGenerate++);
         films.put(film.getId(), film);
         log.info("Получен запрос POST film, добавлен фильм id '{}' название '{}'  ", film.getId(), film.getName());
@@ -41,19 +40,8 @@ public class FilmController {
             log.warn("Фильм с таким id '{}' не обнаружен ", film.getId());
             throw new InvalidException("Фильм с таким id не обнаружен");
         }
-        validator(film);
         films.put(film.getId(), film);
         log.info("Получен запрос PUT film, обновлен фильм id '{}' название '{}'  ", film.getId(), film.getName());
         return film;
-    }
-
-
-    void validator(Film film) {
-
-        if (film.getReleaseDate().isBefore(notEarlier)) {
-            log.info("Заданная дата релиза неверна, раньше чем начала кинематографа");
-            throw new InvalidException("Дата релиза неверна, указана раньше чем 28 декабря 1895 года");
-        }
-
     }
 }
