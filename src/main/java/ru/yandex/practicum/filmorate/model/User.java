@@ -6,11 +6,18 @@ import lombok.NonNull;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NonNull
 @Builder
 public class User {
+
+    private final Set<Integer> friendsList = new HashSet<>();
+
     @Positive(message = "Id должен быть положительным")
     private Integer id;
 
@@ -27,7 +34,7 @@ public class User {
 
     @Builder.Default
     @Pattern(regexp = "[a-zA-Zа-яА-Я\\s]*", message = "Поле name не должно содержать спец символов")
-    private String name = " ";
+    private String name = "";
 
     @PastOrPresent(message = "Дата рождения не может быть в будущем")
     private LocalDate birthday;
