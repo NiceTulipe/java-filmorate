@@ -12,9 +12,9 @@ public interface UserStorage {
 
     User getUserById(Integer userId);
 
-    User createUser(@Valid @RequestBody User user);
+    User createUser(User user);
 
-    User userUpdate(@Valid @RequestBody User user);
+    User userUpdate(User user);
 
     void deleteUser(Integer userId);
 

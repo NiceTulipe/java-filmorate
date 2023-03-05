@@ -13,9 +13,9 @@ public interface FilmStorage {
 
     Film getFilmById(Integer filmId);
 
-    Film createFilm(@Valid @RequestBody Film film);
+    Film createFilm(Film film);
 
-    Film filmUpdate(@Valid @RequestBody Film film);
+    Film filmUpdate(Film film);
 
     void deleteFilmById(Integer filmId);
 
