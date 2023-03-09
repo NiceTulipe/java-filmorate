@@ -8,13 +8,18 @@ import ru.yandex.practicum.filmorate.validation.DateForFilms;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Data
 @Builder
 @NonNull
 public class Film {
+
+    private final Set<Integer> filmRating = new HashSet<>();
     private final int lengthDescription = 200;
+
     @Positive(message = "Id должен быть положительным")
     private Integer id;
 
